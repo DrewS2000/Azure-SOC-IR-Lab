@@ -1,0 +1,6 @@
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID == 4625
+| summarize FailedAttempts = count() by IpAddress, Account, Computer
+| where FailedAttempts > 10
+| order by FailedAttempts desc

@@ -1,0 +1,9 @@
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID == 4688
+| where CommandLine has_any (
+    "powershell", "-enc", "-EncodedCommand",
+    "bypass", "hidden", "iex", "invoke-expression"
+  )
+| project TimeGenerated, Computer, Account, CommandLine, ParentProcessName
+| order by TimeGenerated desc

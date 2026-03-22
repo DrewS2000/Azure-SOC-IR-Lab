@@ -1,0 +1,4 @@
+SecurityEvent
+| where TimeGenerated > ago(24h)
+| where EventID == 4720
+| project TimeGenerated, Computer, TargetUserName, SubjectUserName, SubjectDomainName

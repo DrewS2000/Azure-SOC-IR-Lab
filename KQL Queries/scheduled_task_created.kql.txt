@@ -1,0 +1,4 @@
+SecurityEvent
+| where TimeGenerated > ago(24h)
+| where EventID == 4698
+| project TimeGenerated, Computer, Account, EventData

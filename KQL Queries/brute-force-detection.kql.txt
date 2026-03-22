@@ -1,0 +1,7 @@
+SecurityEvent
+| where TimeGenerated >= datetime(2026-03-21T13:22:00Z)
+| where EventID in (4624, 4625)
+| where AccountType == "User"
+| where Account in ("cybershedd", "win-victim\\cybershedd")
+| project TimeGenerated, EventID, Account, IpAddress, LogonType, Computer
+| order by TimeGenerated asc
